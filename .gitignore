@@ -3,6 +3,12 @@
 build/
 .kotlin/
 
+# Node.js dependencies
+node_modules/
+dist/
+coverage/
+.vitest/
+
 # Local configuration file (sdk path, etc)
 local.properties
 
