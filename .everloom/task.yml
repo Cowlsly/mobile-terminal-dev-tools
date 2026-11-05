@@ -1,0 +1,45 @@
+version: "1.1"
+name: "Build the mobile workspace MVP"
+objective: >
+  Turn the dependency-only repository into a usable, mobile-friendly code
+  workspace with local file browsing, syntax-highlighted viewing, file
+  comparison, and safe public GitHub repository browsing.
+success_criteria:
+  - "The project has documented development and production build commands"
+  - "A user can load a local directory or choose local files without uploading them"
+  - "A user can browse a public GitHub repository without supplying credentials"
+  - "The Pierre tree presents loaded file paths and lets users open a file"
+  - "Text files are displayed with syntax highlighting and binary files are handled clearly"
+  - "Users can compare two loaded files using the Pierre diff renderer"
+  - "The interface is responsive, keyboard accessible, and includes clear empty/error states"
+  - "The production build and TypeScript checks pass"
+entry_points:
+  - "README.md"
+  - "package.json"
+  - "src/App.tsx"
+output_locations:
+  ledger: ".everloom/LEDGER.md"
+  checkpoint: ".everloom/CHECKPOINT.md"
+  discoveries: ".everloom/DISCOVERIES.md"
+  resume_packet: ".everloom/RESUME.md"
+constraints:
+  - "Keep file reading local to the browser; do not upload file contents"
+  - "Do not add GitHub authentication or private repository access"
+  - "Use only the official GitHub API host and public repository endpoints"
+  - "After successful verification, commit and push to the current branch; never force-push"
+  - "Do not claim verification without command evidence"
+verification:
+  - "Run the TypeScript check"
+  - "Run the production build"
+  - "Run the test suite"
+  - "Run npm audit and confirm no known vulnerabilities"
+  - "Run npm ls to confirm application and Pierre dependencies resolve"
+  - "Review the final diff for whitespace errors"
+priority_rules:
+  - "Deliver a working local workspace before adding remote integrations"
+  - "Preserve the privacy and access boundaries of browser-selected files"
+adapters:
+  - "code"
+  - "documentation"
+worker_backends:
+  - "github-copilot"
