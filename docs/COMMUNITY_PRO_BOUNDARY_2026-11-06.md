@@ -1,5 +1,8 @@
 # Community vs Pro boundary | 2026-11-06
 
+## Sign-up and recovery navigation
+A Community or Pro app's Create Account button must navigate to Cowlsly.Online central registration; Forgot Password must navigate to its central recovery page. Users tap secure verification/reset email links rather than copying numeric codes, and can complete in a different email app/browser even if the first tab dies. No local password collection or invented login UI.
+
 ## Shared account gate
 All publicly shipped Cowlsly Labs applications, including this free Community tool, require Cowlsly.Online sign-in. Registration and account recovery remain accessible before authentication. Do not claim authentication is implemented until the central backend issues verified, app-scoped sessions and real-device tests pass. Free account sign-in is not a paid Pro feature.
 
