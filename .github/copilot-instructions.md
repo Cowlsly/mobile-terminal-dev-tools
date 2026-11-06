@@ -14,6 +14,9 @@ You are working exclusively in the repository `Cowlsly/mobile-terminal-dev-tools
 - `.everloom/LEDGER.md`, `.everloom/CHECKPOINT.md`, `.everloom/RESUME.md`, `.everloom/DISCOVERIES.md`, `.everloom/task.yml` IF present. Treat current code and passing tests as stronger evidence than historical notes.
 - `docs/COMMUNITY_PRO_BOUNDARY_2026-11-06.md`: scope and commercial separation.
 
+## Required Cowlsly account at release
+Owner-wide rule: every Cowlsly Labs app/game, including free Mobile Dev Tools Community and future Pro, will require sign-in with a real **Cowlsly.Online** account to use its features. This is a release gate; the central server-backed OIDC/PKCE identity issuer does not yet exist in production. Preserve current browser-only source inspection and privacy while drafting integration points. Do NOT implement a fake login with `localStorage`, password collection, tokens in source, automatic private GitHub access, or a paywall. New users need accessible sign-up and recovery outside the gated workspace. Document the blocker. See the central contract in `Cowlsly/main_user_site_cowlsly_online/docs/architecture/COWLSLY_CENTRAL_ACCOUNT_AND_REWARDS_CONTRACT_2026-11-06.md` (requires access to that repo; don't pretend cross-repo files are local).
+
 ## Mission
 **Finish Community first.** The user owns this project for personal use; public Community is free. Proposed Pro version is a later commercial fork/edition, not the current task.
 
