@@ -1,5 +1,8 @@
 # Community vs Pro boundary | 2026-11-06
 
+## Shared account gate
+All publicly shipped Cowlsly Labs applications, including this free Community tool, require Cowlsly.Online sign-in. Registration and account recovery remain accessible before authentication. Do not claim authentication is implemented until the central backend issues verified, app-scoped sessions and real-device tests pass. Free account sign-in is not a paid Pro feature.
+
 ## Community: finish before proposing Pro shipping
 The current repository is a React/TypeScript/Vite source-file browser and comparator with Pierre Trees, Diffs, Highlights and public GitHub browsing. Its README explicitly says it does **not** execute commands or provide private-repository authentication. Keep a free personal-use focus and trustworthy mobile experience.
 
