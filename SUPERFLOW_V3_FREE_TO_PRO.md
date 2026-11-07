@@ -8,13 +8,13 @@ Status: PARTIAL. This file is the repository-scoped execution adaptation, not a 
 - Follow `AGENTS.md`, `COPILOT_NEXT_TASK.md` and `.everloom/` instructions. Use branches and draft PRs; no automatic merge, deployment, spending or account changes.
 - Current Free application is a browser-based read-only public GitHub workspace. It has **no shell backend, Shizuku functionality, Android APK, or private repository access**. Do not misrepresent it as a native terminal.
 - A separate private Pro repository is a future stage, not created or authorised to publish here. Audit licences and upstream obligations before choosing Pro distribution terms.
-- Do not add Shizuku or privileged operations to Free. Pro requires an independently reviewed security architecture, scoped permissions and explicit approvals for consequential actions.
+- Free public release is also gated on actual Cowlsly.Online account SSO (OIDC/PKCE); the central issuer and device flows must be verified, not mocked. See PR #2's account boundary proposal. Do not add Shizuku or privileged operations to Free. Pro requires an independently reviewed security architecture, scoped permissions and explicit approvals for consequential actions.
 
 ## Reconciled evidence (observed via GitHub connector on 2026-11-08)
 - Repository: https://github.com/Cowlsly/mobile-terminal-dev-tools ; default branch `root`.
 - PR #3, exported Codespaces changes: merged (observed).
-- PR #4, file loading, mobile Codespaces and CI: draft/unmerged (observed).
-- PR #4 `VERIFICATION.md` reports successful npm ci, typecheck, 30 tests, build, audit and a linked CI run on a specific SHA (historical report; do not generalise to subsequent commits).
+- PR #4, file loading, mobile Codespaces and CI: MERGED on 2026-11-08 AWST. Community CI on the merged code passed: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42418703002 .
+- PR #4 `VERIFICATION.md` reports successful npm ci, typecheck, 30 tests, build, audit and a linked CI run on a specific SHA. The merged source also has a successful Community CI run; neither establishes Android device testing.
 - 360px/390px mobile browser checks, native file pickers, hosted Codespaces preview and production browser WASM remain NOT RUN in the recorded evidence.
 - PR #2 is a separate Copilot instructions proposal. Preserve and reconcile before merge.
 - Local unpushed Codespaces edits: UNKNOWN. GitHub cannot prove they were preserved.
@@ -22,7 +22,7 @@ Status: PARTIAL. This file is the repository-scoped execution adaptation, not a 
 ## Ordered execution queue
 | ID | Priority | State | Outcome / acceptance gate |
 |---|---|---|---|
-| CL-DT-001 | P1 | VERIFYING | Reconcile PR #4 and PR #2; independently review diffs, checks, release boundaries and regressions. No automatic merge. |
+| CL-DT-001 | P1 | PARTIAL | PR #4 merged with passing Community CI; reconcile PR #2 account boundary and outstanding release gates. No automatic merge. |
 | CL-DT-002 | P1 | READY | Run real 360px, 390px and desktop browser smoke tests: workspace load, tree, highlighting/WASM, diff, GitHub errors, file selection, focus and touch. Attach actual evidence; mark device-only checks pending. |
 | CL-DT-003 | P1 | READY | Verify Codespaces port 5173 in supported environment; distinguish container connectivity from app defects. |
 | CL-DT-004 | P2 | BLOCKED | Produce Free release candidate only after code review and required gates. Define distribution format honestly; do not promise APK from Vite source. Blocker: browser/device evidence and review. |
@@ -30,7 +30,7 @@ Status: PARTIAL. This file is the repository-scoped execution adaptation, not a 
 | CL-DT-006 | P2 | BLOCKED | Implement Pro-only advanced/privileged features after separate specification, authorisation and tests. No Shizuku in Free. |
 
 ## Resumption
-1. Inspect PR #4's current head, CI and review comments; inspect PR #2 and `.everloom/` records before editing.
+1. PR #4 is merged; inspect current `root`, PR #2 and `.everloom/` records before editing. Fortify's historic red PR #5 run predates the manual-only change and is not evidence of a current security scan.
 2. Complete CL-DT-001, then CL-DT-002/003 in a browser-capable runtime. Avoid retrying the same container socket failure without a changed environment.
 3. Keep `local`, `CI`, `browser`, `Android device` and `production` verification separate.
 4. Update existing `.everloom` ledger/checkpoint after substantive implementation. No parallel ledger authority is created by this file.
