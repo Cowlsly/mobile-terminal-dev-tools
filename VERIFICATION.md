@@ -33,7 +33,12 @@ and comparison completion after switching workspaces.
   Therefore 360px, 390px and desktop visual checks, production-browser WASM,
   real network GitHub browsing, focus navigation, and native file pickers are
   **NOT RUN**. No screenshots are claimed. jsdom is not browser/device evidence.
-- Codespaces image launch and forwarded preview: **NOT RUN**; configuration only.
+- The supplied Codespaces creation log showed image launch failed because
+  `javascript-node:1-24-bookworm` has no manifest. The config now uses
+  `javascript-node:24-bookworm`; devcontainer JSON validation and the registry
+  manifest request both pass. Container startup and forwarded preview remain
+  **NOT RUN** after the correction: this environment has no Docker/devcontainer
+  executable. Node/npm are also unavailable here, so app checks were not rerun.
 - Phone installation, central account SSO and production: **NOT RUN**.
 
 ## CI and optional Fortify

@@ -11,6 +11,9 @@ Supersedes historical implementation status below; historical decisions retained
   add independent CI and Codespaces config; improve touch controls; preserve evidence.
 - OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
   build, audit and whitespace checks pass. See VERIFICATION.md for exact scope.
+- Codespaces follow-up: the supplied creation log showed the old Node image tag
+  had no manifest. Updated it to `24-bookworm`; JSON and registry manifest checks
+  pass, but launching the container remains unverified in this environment.
 - Added response-size/empty-file handling and guards for stale asynchronous work.
 - Fortify failure diagnosed from logs; template proposed as manual-only.
 - BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
