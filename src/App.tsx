@@ -169,6 +169,7 @@ export default function App() {
   const { model } = useFileTree({
     paths: [],
     initialExpansion: 2,
+    itemHeight: 44,
     search: true,
     onSelectionChange: handleTreeSelection,
   });

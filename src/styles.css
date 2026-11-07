@@ -394,12 +394,19 @@ h1 {
 .file-tree {
   min-height: 0;
   flex: 1 1 auto;
+  --trees-theme-sidebar-bg: #14161b;
+  --trees-theme-sidebar-fg: #d8d8e0;
+  --trees-theme-sidebar-header-fg: #aaa7b5;
+  --trees-theme-sidebar-border: #2a2d36;
+  --trees-theme-list-active-selection-bg: #30283b;
+  --trees-theme-list-active-selection-fg: #f0e9fa;
+  --trees-theme-list-hover-bg: #25232d;
+  --trees-theme-focus-ring: #b38eff;
+  --trees-theme-input-bg: #15171e;
+  --trees-theme-input-border: #46414f;
   --trees-fg-override: #d8d8e0;
   --trees-selected-bg-override: #30283b;
   --trees-border-color-override: #2a2d36;
-  --trees-theme-background: #14161b;
-  --trees-theme-foreground: #d8d8e0;
-  --trees-theme-selection-background: #30283b;
 }
 
 .sidebar-empty {
@@ -799,10 +806,16 @@ h1 {
     width: auto;
     min-width: 0;
     min-height: 175px;
-    max-height: 33dvh;
+    max-height: 36dvh;
     flex: 0 0 auto;
     border-right: 0;
     border-bottom: 1px solid var(--stroke);
+  }
+
+  /* The virtualized tree needs a definite height to size its scroll list. */
+  .file-tree {
+    height: clamp(120px, 26dvh, 240px);
+    flex: 0 0 clamp(120px, 26dvh, 240px);
   }
 
   .sidebar-heading {
