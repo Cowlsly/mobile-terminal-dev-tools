@@ -16,10 +16,10 @@ setting up an account or sending local files to a server.
 
 ## Run locally
 
-Use Node.js 22.12+ (22.x), 24.x, or 26+:
+Use Node.js 24 (the CI and Codespaces version):
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
@@ -64,3 +64,34 @@ npm test
 - [Vitest](https://github.com/vitest-dev/vitest) and
   [Testing Library](https://github.com/testing-library/react-testing-library)
   — automated tests
+
+## Codespaces from Android
+
+1. Open this repository's working branch on GitHub, choose **Code → Codespaces → Create**.
+2. Wait for the container's `npm ci` to finish, then run `npm run dev`.
+3. Open **Ports → 5173 → Open in Browser**. Keep the forwarded port private.
+4. Choose **Load sample project**, select a file in the tree, then try **Compare**.
+5. Use **Select files** for your phone's local picker, or **GitHub repo** for a public repository.
+
+If the preview is missing, add port **5173** in the Ports panel and verify that the
+Vite process is still running. If the port is occupied, stop the old process or
+forward the new port printed by Vite. Folder selection varies across Android
+browsers and document providers; select individual files when needed. Cancelling
+a picker leaves the current workspace intact. Editor font/wrap settings do not
+change Android keyboard behaviour. Codespaces hosting itself has account quotas.
+
+## Verification and release status
+
+See [VERIFICATION.md](VERIFICATION.md) for executed checks and limitations.
+Community CI runs install, dependency resolution, typecheck, tests, build and
+`npm audit` (all severities, including development dependencies). Audit failure
+fails CI; no vendor subscription or secrets are needed. Fortify is a separate,
+manual vendor scan: its last observed automatic run failed for missing FoD
+credentials. It has not provided successful security evidence.
+
+This is a browser source inspector, not an Android APK or an executable terminal.
+There is no shell backend or Shizuku dependency. The configuration for Codespaces
+is supplied but a hosted Codespace and physical Android interactions still need
+verification. The central Cowlsly.Online account integration described in draft
+PR #2 remains a separate release dependency; this PR does not introduce fake
+login or claim that SSO is implemented. No production release is included.

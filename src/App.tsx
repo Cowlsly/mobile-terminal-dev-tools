@@ -178,6 +178,8 @@ export default function App() {
       try {
         const nextEntries = createWorkspaceFiles(fileList);
         workspaceLoadId.current += 1;
+        setGithubLoading(false);
+        setCompareLoading(false);
         requestId.current += 1;
         setLoadingPath("");
         githubRepositoryRef.current = null;
@@ -207,6 +209,7 @@ export default function App() {
       event.preventDefault();
       const loadId = ++workspaceLoadId.current;
       setGithubLoading(true);
+      setCompareLoading(false);
       requestId.current += 1;
       setLoadingPath("");
       setError("");
@@ -255,17 +258,20 @@ export default function App() {
   );
 
   const handleCompare = useCallback(async () => {
+    const loadId = workspaceLoadId.current;
     setCompareLoading(true);
     setCompareError("");
     try {
       await Promise.all([readPath(oldPath), readPath(newPath)]);
+      if (loadId !== workspaceLoadId.current) return;
       setView("compare");
     } catch (cause) {
+      if (loadId !== workspaceLoadId.current) return;
       setCompareError(
         cause instanceof Error ? cause.message : "Unable to read files for comparison.",
       );
     } finally {
-      setCompareLoading(false);
+      if (loadId === workspaceLoadId.current) setCompareLoading(false);
     }
   }, [newPath, oldPath, readPath]);
 
