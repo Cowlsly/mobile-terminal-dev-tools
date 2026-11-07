@@ -1,13 +1,9 @@
 # Community verification — 8 November 2026 (AWST; 7 November UTC)
 
 Current results supersede the earlier recovery log below wherever they differ.
-
-Branch `fix/copilot-mobile-verification`. Application checks used the source
-baseline at `b8e2a8d` plus an uncommitted `src/styles.css` change for Pierre tree
-theme colors and mobile tree height. A later documentation-only commit did not
-change the tested application sources. The stylesheet was preserved and included
-in the local build/browser checks, but it is not in the published PR. No
-credentials were read or exposed.
+Branch `fix/copilot-mobile-verification`; tested source commit
+`db667cc6c5fa855c9c18baa59dc62e43c854343d`, based on `402ac4b`. No dependency
+versions or lockfile were changed. No credentials were read or exposed.
 
 ## Current local checks
 
@@ -20,45 +16,49 @@ credentials were read or exposed.
 | `npm test` | PASS (0) | 30 tests across 4 files |
 | `npm run build` | PASS (0) | Vite 8.3.5; optional language chunks exceed 500 kB |
 | `npm audit` | PASS (0) | 0 known vulnerabilities, including development dependencies |
-| `git diff --check` | PASS (0) | Current worktree and committed branch delta are clean |
-
-No dependency versions or lockfile were changed.
+| `git diff --check` | PASS (0) | No whitespace errors |
 
 ## Current browser checks
 
-- Production preview (`npm run preview -- --strictPort --port 4173`) returned
-  HTTP 200. Headless Chromium exercised the production bundle at 360×800,
-  390×844, and 1280×900. Document/body widths matched the viewport at all
-  sizes; no page-level horizontal overflow was observed.
-- At phone widths, the visible import and navigation controls had 44px heights.
-  At 390px, the three-file sample tree rendered four rows in a ~203px tree
-  region. Portrait touch selected `src/greeting-updated.ts`; Pierre Highlights
-  produced highlighted code in the production browser.
-- The production Diffs view rendered a comparison between
-  `src/greeting.ts` and `src/greeting-updated.ts`, with expected changed lines.
-- The browser loaded public `octocat/Hello-World` through GitHub's unauthenticated
-  public API (`master`, one file). This is a single successful network sample,
-  not evidence about live rate-limit behavior.
-- Existing jsdom tests cover invalid GitHub hosts, binary/oversized/invalid UTF-8
-  responses, private/truncated repositories, file input handling, and workspace
-  race conditions. Native Android pickers, physical devices, keyboard/focus
-  navigation, API rate-limit/network failures, and hosted Codespaces startup
-  remain **NOT RUN**.
-- The corrected `.devcontainer/devcontainer.json` image/startup and Codespaces
-  forwarded-port UI remain **NOT RUN**. No production deployment was made.
+- The production preview on port 5173 returned HTTP 200. Headless Chromium
+  149 exercised it at 360×900, 390×900, and 1280×900. Document width matched
+  each viewport; no page-level horizontal overflow or page errors occurred.
+- A confirmed mobile defect was repaired: Pierre's virtualized tree needs a
+  definite height on narrow layouts. Its auto-sized host had left the internal
+  virtual scroll region at 0px, clipping rows. The mobile tree now receives a
+  definite viewport-based height, and all four sample rows fit at both phone
+  sizes. Tree rows and the mobile import/navigation controls measure 44px.
+- Portrait touch selected `src/greeting-updated.ts`; the production browser
+  rendered syntax-highlighted output (25 highlight spans). The production
+  Diffs component rendered the expected old `Hello` and new `Welcome back` lines.
+- Playwright's local file injection exercised the individual-file import path.
+  The native Android file/folder picker was not opened. A bad external host was
+  rejected with `Only HTTPS URLs from github.com are supported.` Public
+  `octocat/Hello-World` browsing succeeded without a token: repository,
+  branch, and tree endpoints returned HTTP 200, and its README rendered.
+- Existing jsdom tests cover invalid GitHub hosts, binary/oversized/invalid
+  UTF-8 responses, private/truncated repositories, file input handling, and
+  workspace race conditions. API rate-limit/network failures, physical Android,
+  keyboard/focus navigation, and the native picker remain **NOT RUN**.
+- The corrected `.devcontainer/devcontainer.json` startup and Codespaces
+  forwarded-port UI remain **NOT RUN**. Local preview is not evidence of hosted
+  Codespaces readiness. No production deployment was made.
+
+Screenshots at 360px, 390px, and desktop are retained as session artifacts and
+are not committed to the application repository.
 
 ## CI and remaining blockers
 
 [Community CI passed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42382070655)
-on published PR #4 head `402ac4bc319cf82210028b40b40af1f985134028`. PR #4 is still
-open and draft. CI has **NOT RUN** on the local documentation-only commit or on
-the uncommitted stylesheet change.
+on the published PR #4 head `402ac4bc319cf82210028b40b40af1f985134028`. PR #4
+is still open and draft. CI has **NOT RUN** on `db667cc6c5fa855c9c18baa59dc62e43c854343d`.
+The local branch is five commits ahead of its remote tracking branch.
 
-The local branch has two commits beyond its remote tracking branch. A previous
-push attempt could not obtain a GitHub password; there is no configured local
-credential helper or `gh` executable. Do not send credentials in chat. Preserve
-the current stylesheet change until its owner confirms it is ready to include;
-it has not been staged or committed.
+Push publication remains blocked: the shell has no configured GitHub credential
+helper or `gh` executable, and a previous push could not obtain credentials.
+Do not send credentials in chat. The Pro add-on repository has not been created;
+keep its source separate from this free workspace and defer repository creation
+until the free PR/release gates and repository write access are available.
 
 [The observed Fortify run failed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42362861697)
 at the base SHA because `FOD_CLIENT_ID` or `FOD_USER` was missing. The vendor
@@ -66,9 +66,8 @@ scan remains manual-only and is not counted as successful security evidence.
 Other vendor configuration is unknown; no secret values were accessed.
 
 The central account SSO described by draft PR #2 remains a separate release
-dependency, not part of this browser-only free workspace. Do not start the Pro
-add-on repository until the free version is reviewed and its release gates are
-resolved.
+dependency, not part of this browser-only free workspace. No merge, deployment,
+paid service, private GitHub access, or shell backend was introduced.
 
 ## Earlier recovery log — 7 November 2026 (superseded where updated above)
 

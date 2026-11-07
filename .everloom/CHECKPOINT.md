@@ -2,35 +2,32 @@
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- Authority: owner-approved continuation; root AGENTS.md and COPILOT_NEXT_TASK.md reviewed.
-- Base `14942450b0c842d0bba3031afce52664a6a70f95`; application checks used
-  source baseline `b8e2a8d` plus the current uncommitted stylesheet.
-- A documentation-only commit followed the app checks and did not change app
-  sources; CI has not run on it.
-- Local checks pass: clean install, 18 direct dependencies, typecheck, all 30
-  tests, production build, full audit (zero findings), and `git diff --check`.
-  Build emits the existing optional-language-chunk size warning.
-- Chromium production checks passed at 360×800, 390×844, and 1280×900 without
-  horizontal overflow. At 390px, sample tree touch selection, production WASM
-  highlighting, unified Diffs, and public `octocat/Hello-World` browsing worked.
-  Native Android pickers, physical-device keyboard/focus, live rate limits, and
-  hosted Codespaces remain **NOT RUN**.
-- The worktree contains an uncommitted `src/styles.css` tree-theme/mobile-height
-  change. It was present in the last local build and browser run; preserve it,
-  do not stage or publish it without owner confirmation.
-- PR #4 remains open/draft on published head `402ac4bc319cf82210028b40b40af1f985134028`.
-  Community CI passed there, but not on the local documentation commit or the
-  stylesheet change.
-  Publishing is blocked by missing local GitHub credentials; do not request them
-  in chat. See [VERIFICATION.md](../VERIFICATION.md) for detailed evidence.
-- `.devcontainer/devcontainer.json` now uses `24-bookworm`, `npm ci`, and port
-  5173, but rebuilding the corrected Codespace has not been verified.
-- No merge, deployment, paid service, private GitHub access, or shell backend.
-  Preserve draft PR #2. The Pro add-on is out of scope until free-version gates
-  are closed.
-- Next: resolve ownership/readiness of the stylesheet change, publish through an
-  authenticated GitHub UI, verify CI on the exact final commit, then complete
-  physical Android and hosted Codespaces checks.
+- Tested source commit: `db667cc6c5fa855c9c18baa59dc62e43c854343d` on
+  `fix/copilot-mobile-verification`, based on `402ac4b`.
+- All requested local npm checks PASS; 30 tests and zero audit findings.
+- Production Chromium passed at 360×900, 390×900, and 1280×900. The responsive
+  tree now has a definite mobile height and 44px rows; touch selection,
+  production highlighting, and visible unified diff output passed.
+- Anonymous public `octocat/Hello-World` browsing, README reading, invalid URL
+  rejection, and injected local file selection passed.
+- Native Android picker, physical keyboard/focus, live GitHub failures/rate
+  limits, and hosted Codespaces startup/port forwarding remain **NOT RUN**.
+- PR #4 CI only covers published commit `402ac4bc319cf82210028b40b40af1f985134028`.
+  The local branch is five commits ahead; the current local source commit has
+  no CI result and push is blocked by unavailable GitHub credentials.
+- The free workspace remains separate from the uncreated Pro add-on repository.
+  Keep draft PR #2; no merge, deployment, paid service, private access, or shell
+  backend was introduced.
+
+## Current work packet status
+
+| Packet | Status | Evidence / remaining work |
+|---|---|---|
+| Local install, tests, build, audit | PASS | See `VERIFICATION.md` |
+| 360/390px and desktop browser flows | PASS in Chromium simulation | Native Android is NOT RUN |
+| CI | PASS on published PR head only | Publish current local commit and verify its run |
+| Codespaces | Configuration ready; hosted validation NOT RUN | Corrected image and preview forwarding unverified |
+| Pro repo | NOT STARTED | Needs separate repository write access and scope |
 
 ---
 

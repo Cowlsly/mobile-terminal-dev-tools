@@ -2,28 +2,26 @@
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- Current branch: `fix/copilot-mobile-verification`, base
-  `14942450b0c842d0bba3031afce52664a6a70f95`. App checks used source baseline
-  `b8e2a8d` plus the current uncommitted stylesheet; a later commit changed only
-  verification records.
-- All local npm checks pass; 30 tests. Production Chromium verified 360/390px
-  portrait and desktop 1280px with no horizontal overflow, sample tree touch,
-  WASM highlighting, Diffs, and a public repository request. See
+- Current source commit: `db667cc6c5fa855c9c18baa59dc62e43c854343d` on
+  `fix/copilot-mobile-verification`; exact local test results are in
   [VERIFICATION.md](../VERIFICATION.md).
-- **Preserve:** uncommitted `src/styles.css` contains a tree theme and mobile
-  height fix that was included in the last local build/browser check. It is not
-  committed or on the open draft PR #4.
-- **Blocked:** no local GitHub credentials are configured, so new commits cannot
-  be published and no CI result exists for the current local tree. PR #4 CI only
-  proves its remote head `402ac4bc319cf82210028b40b40af1f985134028`, not later
-  documentation records or the uncommitted stylesheet.
-- Still not verified: native Android file pickers/physical keyboard, keyboard
-  focus flow, corrected hosted Codespaces startup and forwarded-port UI, live
-  GitHub API rate-limit/error behavior.
-- No merge, deployment, credentials, or Pro repository work. Keep draft PR #2.
-- Next: preserve and confirm the stylesheet changes, publish through the GitHub
-  UI, verify final CI, then close hosted Codespaces/device gates before starting
-  the separate Pro add-on repository.
+- Local install, 18 direct dependencies, typecheck, 30 tests, production build,
+  audit (zero findings), and diff checks all PASS.
+- Production Chromium passed 360×900, 390×900, and 1280×900. Mobile tree rows
+  are 44px and fully visible for the sample; touch selection, code highlighting,
+  diff rendering, local file injection, invalid GitHub URL rejection, and one
+  anonymous public-repository browse passed.
+- **Not run:** physical Android/native pickers, keyboard/focus on device, GitHub
+  network/rate-limit failures, and hosted Codespaces startup/port forwarding.
+- **Blocked:** push/CI on local source is pending GitHub write authentication.
+  PR #4 CI covers only published `402ac4bc319cf82210028b40b40af1f985134028`.
+  The local branch is five commits ahead. Do not send credentials in chat.
+- The Pro add-on repository has not been created; keep it separate from this
+  free workspace. Keep draft PR #2. No merge, deployment, credentials, paid
+  services, private access, or shell backend were introduced.
+- Next: publish the reviewed free-version changes through authenticated GitHub
+  tooling; verify CI and hosted Codespaces/device gates, then create the
+  separate Pro repository when write access and scope are available.
 
 ---
 

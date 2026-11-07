@@ -2,26 +2,29 @@
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- At production build preview, 360×800 and 390×844 viewports had no horizontal
-  page overflow; 1280×900 desktop also fit.
-- Before the current uncommitted CSS update, the Pierre tree's theme variables
-  were not applied and its narrow-screen region was only about 113px high. The
-  current worktree sets the package's sidebar/list/input theme variables and a
-  definite mobile height (`clamp(120px, 24dvh, 220px)`). A 390px production
-  browser run then showed four rows in about 203px, touch selection, highlighting,
-  and comparison. Preserve this local change; it is not committed.
-- Production-browser highlighting confirms the bundled WASM runtime works; this
-  is stronger than the earlier Node/jsdom-only check.
-- A real public API request for `octocat/Hello-World` succeeded without a token.
-  Rate-limit/network failure and native Android picker behavior are still not
-  verified; unit tests cover validation and size/encoding/binary limits.
-- `npm ci`, dependency resolution, typecheck, 30 tests, build, audit, and
-  `git diff --check` pass locally. A documentation-only commit followed these
-  checks; remote CI is successful only on PR #4's published head, not on local
-  records or the uncommitted stylesheet.
-- Remote push still requires authenticated GitHub UI access. The corrected
-  Codespaces image has not been rebuilt; do not claim a hosted preview.
-- No merge, deployment, paid service, private GitHub access, or shell backend.
+- The Pierre tree's original theme variables were unsupported, leaving a light
+  background with faint text. Use documented `--trees-theme-sidebar-*` and
+  list/input variables for a coherent dark tree.
+- On narrow layouts the tree host had auto height while its virtualized shadow
+  root used `height: 100%`; the scroll area collapsed to 0px. A definite,
+  viewport-based mobile host height restores visible rows. Setting Pierre
+  `itemHeight: 44` keeps touch targets aligned with the virtualizer and CSS.
+- Verified in production Chromium at 360×900, 390×900, and 1280×900: no
+  horizontal overflow; all sample rows visible at the phone sizes; real touch
+  selection, highlighted TypeScript, rendered Diffs, and public
+  `octocat/Hello-World` browsing work. The production Highlight bundle executes
+  successfully, not just its Node/jsdom wrapper.
+- Local file selection was exercised through Playwright file injection, not a
+  physical/native picker. GitHub API success and invalid-host rejection passed;
+  live network/rate-limit failures remain untested. Unit tests cover binary,
+  oversized, invalid UTF-8, private/truncated and race cases.
+- All requested local npm checks pass on source commit
+  `db667cc6c5fa855c9c18baa59dc62e43c854343d`. The build still warns about
+  optional language chunks over 500 kB. CI only passed on PR #4's published
+  `402ac4bc319cf82210028b40b40af1f985134028`.
+- GitHub write authentication, hosted Codespaces startup/port forwarding, and
+  physical Android remain blockers/unverified. No credentials were accessed.
+- No merge, deployment, paid service, private access, or shell backend.
 
 ---
 

@@ -4,37 +4,40 @@ Supersedes historical implementation status below; historical decisions retained
 
 - Authority: owner-approved continuation; repository instructions and the
   current owner work packet were reviewed.
-- Base `14942450b0c842d0bba3031afce52664a6a70f95`; app checks used source
-  baseline `b8e2a8d` plus the current uncommitted stylesheet.
-- A documentation-only commit followed those app checks and did not change
-  application sources; CI has not run on it.
-- Local npm checks pass (install, 18 direct dependencies, typecheck, 30 tests,
-  production build, audit with zero findings, whitespace check).
-- Production Chromium passed at 360×800, 390×844, and 1280×900 without
-  horizontal overflow. Sample selection, production Highlights/WASM, Diffs, and
-  public `octocat/Hello-World` browsing worked. See `VERIFICATION.md`.
-- The current worktree includes an uncommitted `src/styles.css` tree-theme and
-  mobile-height fix. It was present in the final build/browser checks, but was
-  not staged or published; preserve it pending owner confirmation.
-- PR #4 is still open/draft on `402ac4bc319cf82210028b40b40af1f985134028`.
-  Community CI passed there, not on local documentation commits or the
-  uncommitted stylesheet.
-- Remote publication is blocked by missing local GitHub credentials. Corrected
-  hosted Codespaces startup/port forwarding and physical Android/native picker
-  checks remain **NOT RUN**.
-- No merge, deployment, paid service, private GitHub access, or shell backend.
-  Keep draft PR #2. The Pro repository remains out of scope until free-version
-  review and remaining release gates are complete.
+- Base `14942450b0c842d0bba3031afce52664a6a70f95`; tested source commit
+  `db667cc6c5fa855c9c18baa59dc62e43c854343d`.
+- `npm ci`, dependency resolution (18 direct packages), typecheck, 30 tests,
+  production build, audit (zero findings), and `git diff --check` all PASS.
+  Build retains an optional-language-chunk size warning.
+- Production Chromium 149 passed at 360×900, 390×900, and 1280×900 without
+  horizontal overflow. Fixed tree sizing now exposes all sample files with 44px
+  rows; touch selection, Highlights, Diffs, local file injection, invalid URL
+  rejection, and anonymous `octocat/Hello-World` browsing succeeded.
+- The prior mobile bug was due to Pierre Trees' percent-height virtualized root
+  having an auto-sized host; its scroll area collapsed. A definite mobile tree
+  height repairs it. Unsupported sidebar theme variables were also replaced by
+  the documented Pierre theme variables.
+- Physical Android/native picker, keyboard/focus, live GitHub rate-limit and
+  network-error behavior, and hosted Codespaces startup/forwarded-port UI remain
+  **NOT RUN**. See `VERIFICATION.md`.
+- PR #4 remains open/draft at published head
+  `402ac4bc319cf82210028b40b40af1f985134028`; CI passed there, not on local
+  source commit `db667cc6c5fa855c9c18baa59dc62e43c854343d`. The local branch is
+  five commits ahead. Push is blocked by unavailable local GitHub credentials.
+- Keep draft PR #2; no merge, deployment, paid service, private access, or shell
+  backend. The Pro add-on repository has not been created and must remain
+  separate from this free workspace.
 
 ## Current work packet status
 
 | Packet | Status | Evidence / remaining work |
 |---|---|---|
-| Reproduce checks | PASS locally | `VERIFICATION.md`; 30 tests, clean audit |
-| Independent CI | PASS on PR head only | Must rerun after final local changes are published |
-| Codespaces setup | Configured, hosted check NOT RUN | Corrected image and forwarded-port UI unverified |
-| Mobile UX | Chromium responsive/touch simulation PASS | Physical Android, native pickers, keyboard/focus remain NOT RUN |
-| Durable handoff | Updated locally | Push, final CI, owner review, and remaining device gates outstanding |
+| Reproducible local checks | PASS | Exact results in `VERIFICATION.md`; all 30 tests pass |
+| Production mobile workflow | PASS in Chromium simulation | Native Android, keyboard/focus remain NOT RUN |
+| Public GitHub and local import | PASS in browser sample | Native picker and live failure/rate-limit paths remain NOT RUN |
+| Independent CI | PASS on published PR head only | Publish final local commit, then confirm new CI |
+| Codespaces | Configuration present, hosted check NOT RUN | Corrected image and port-forward UI still unverified |
+| Pro repository | NOT STARTED | Separate remote repo needs write capability; scope remains distinct |
 
 ---
 
