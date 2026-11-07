@@ -115,3 +115,35 @@ describe("parseGitHubRepository", () => {
     expect(api.getContent).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('GitHub response boundaries', () => {
+  const repository = { owner: 'octocat', repo: 'Hello-World', defaultBranch: 'main' };
+  it('opens an empty text file', async () => {
+    api.getContent.mockResolvedValue({data: {type: 'file', encoding: 'base64', content: '', size: 0}});
+    await expect(readPublicGitHubFile(repository, 'empty.txt', 0)).resolves.toBe('');
+  });
+  it.each([
+    {type: 'file', encoding: 'base64', content: btoa('changed'), size: 1048577},
+    {type: 'file', encoding: 'base64', content: btoa('x'.repeat(1048577))},
+  ])('rejects a response that grew beyond the listed size', async (data) => {
+    api.getContent.mockResolvedValue({data});
+    await expect(readPublicGitHubFile(repository, 'changed.txt', 1)).rejects.toThrow('larger than 1 MB');
+  });
+  it.each([
+    [{type: 'file', encoding: 'none', content: ''}, 'text content'],
+    [{type: 'file', encoding: 'base64', content: btoa('\0')}, 'binary'],
+    [{type: 'file', encoding: 'base64', content: btoa('\xff')}, 'UTF-8'],
+  ])('rejects unsupported response data', async (data, error) => {
+    api.getContent.mockResolvedValue({data});
+    await expect(readPublicGitHubFile(repository, 'file', 1)).rejects.toThrow(error);
+  });
+  it('rejects private repositories before fetching a tree', async () => {
+    api.getRepo.mockResolvedValue({data: {private: true}});
+    await expect(listPublicGitHubFiles(repository)).rejects.toThrow('Only public');
+    expect(api.getTree).not.toHaveBeenCalled();
+  });
+  it('rejects incomplete repository trees', async () => {
+    api.getTree.mockResolvedValue({data: {truncated: true, tree: []}});
+    await expect(listPublicGitHubFiles(repository)).rejects.toThrow('truncated');
+  });
+});

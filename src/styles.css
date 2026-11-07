@@ -892,3 +892,16 @@ h1 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Keep primary controls readable and tappable on narrow touch screens. */
+@media (max-width: 760px) {
+  .button, .floating-compare, .view-tab, .demo-link,
+  .github-import input, .compare-controls select { min-height: 44px; }
+  .github-import input, .compare-controls select { font-size: 16px; }
+  .import-actions > .button, .view-tab, .floating-compare { font-size: 13px; }
+  .highlighted-code, .plain-code { font-size: 14px; }
+  .privacy-footer { flex-wrap: wrap; padding: 12px 0; text-align: center; }
+  .notice { overflow-wrap: anywhere; }
+  .view-tabs { flex-wrap: wrap; gap: 12px; }
+}
+input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }

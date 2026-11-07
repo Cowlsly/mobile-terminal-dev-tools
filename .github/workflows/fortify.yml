@@ -15,15 +15,10 @@
 
 name: Fortify AST Scan
 
-# Customize trigger events based on your DevSecOps process and/or policy
+# Optional vendor scan: the latest run failed for missing FOD credentials.
+# Configure the vendor account deliberately before manually running this workflow.
+# Community CI remains independent and requires no vendor secrets.
 on:
-  push:
-    branches: [ "root" ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "root" ]
-  schedule:
-    - cron: '28 14 * * 4'
   workflow_dispatch:
 
 jobs:
