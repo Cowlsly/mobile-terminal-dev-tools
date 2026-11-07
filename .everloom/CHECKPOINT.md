@@ -13,8 +13,8 @@ Supersedes historical implementation status below; historical decisions retained
 - Native Android picker, physical keyboard/focus, live GitHub failures/rate
   limits, and hosted Codespaces startup/port forwarding remain **NOT RUN**.
 - PR #4 CI only covers published commit `402ac4bc319cf82210028b40b40af1f985134028`.
-  The local branch is five commits ahead; the current local source commit has
-  no CI result and push is blocked by unavailable GitHub credentials.
+  The current local source commit has no CI result; local source and evidence
+  commits remain unpushed because GitHub write authentication is unavailable.
 - The free workspace remains separate from the uncreated Pro add-on repository.
   Keep draft PR #2; no merge, deployment, paid service, private access, or shell
   backend was introduced.

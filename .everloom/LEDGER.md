@@ -22,8 +22,9 @@ Supersedes historical implementation status below; historical decisions retained
   **NOT RUN**. See `VERIFICATION.md`.
 - PR #4 remains open/draft at published head
   `402ac4bc319cf82210028b40b40af1f985134028`; CI passed there, not on local
-  source commit `db667cc6c5fa855c9c18baa59dc62e43c854343d`. The local branch is
-  five commits ahead. Push is blocked by unavailable local GitHub credentials.
+  source commit `db667cc6c5fa855c9c18baa59dc62e43c854343d`. Local source and
+  evidence commits remain unpushed after a noninteractive push failed for lack
+  of a GitHub password.
 - Keep draft PR #2; no merge, deployment, paid service, private access, or shell
   backend. The Pro add-on repository has not been created and must remain
   separate from this free workspace.

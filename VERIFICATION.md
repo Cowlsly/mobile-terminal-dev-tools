@@ -52,13 +52,14 @@ are not committed to the application repository.
 [Community CI passed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42382070655)
 on the published PR #4 head `402ac4bc319cf82210028b40b40af1f985134028`. PR #4
 is still open and draft. CI has **NOT RUN** on `db667cc6c5fa855c9c18baa59dc62e43c854343d`.
-The local branch is five commits ahead of its remote tracking branch.
+The local source and verification commits remain unpushed.
 
-Push publication remains blocked: the shell has no configured GitHub credential
-helper or `gh` executable, and a previous push could not obtain credentials.
-Do not send credentials in chat. The Pro add-on repository has not been created;
-keep its source separate from this free workspace and defer repository creation
-until the free PR/release gates and repository write access are available.
+Push publication remains blocked: the noninteractive `git push` exited 128 with
+`fatal: unable to get password from user`; the shell has no configured GitHub
+credential helper or `gh` executable. Do not send credentials in chat. The Pro
+add-on repository has not been created; keep its source separate from this free
+workspace and defer repository creation until the free PR/release gates and
+repository write access are available.
 
 [The observed Fortify run failed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42362861697)
 at the base SHA because `FOD_CLIENT_ID` or `FOD_USER` was missing. The vendor

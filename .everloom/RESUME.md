@@ -15,7 +15,8 @@ Supersedes historical implementation status below; historical decisions retained
   network/rate-limit failures, and hosted Codespaces startup/port forwarding.
 - **Blocked:** push/CI on local source is pending GitHub write authentication.
   PR #4 CI covers only published `402ac4bc319cf82210028b40b40af1f985134028`.
-  The local branch is five commits ahead. Do not send credentials in chat.
+  The latest noninteractive push failed because Git could not obtain a password.
+  Do not send credentials in chat.
 - The Pro add-on repository has not been created; keep it separate from this
   free workspace. Keep draft PR #2. No merge, deployment, credentials, paid
   services, private access, or shell backend were introduced.
