@@ -2,31 +2,37 @@
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- Authority: current owner request to execute Master Superflow Work Queue v3 on
-  Dev Tools; root AGENTS.md and COPILOT_NEXT_TASK.md read in full. Draft PR #2's
-  Copilot instructions reviewed; do not overwrite or merge it.
-- Base: 14942450b0c842d0bba3031afce52664a6a70f95.
-- Branch: fix/copilot-mobile-verification. State: PARTIAL / draft PR #4.
-- Plan executed: reproduce baseline; fix file loading regressions with tests;
-  add independent CI and Codespaces config; improve touch controls; preserve evidence.
-- OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
-  build, audit and whitespace checks pass. See VERIFICATION.md for exact scope.
-- Codespaces follow-up: the supplied creation log showed the old Node image tag
-  had no manifest. Updated it to `24-bookworm`; JSON and registry manifest checks
-  pass, but launching the container remains unverified in this environment.
-- Added response-size/empty-file handling and guards for stale asynchronous work.
-- Fortify failure diagnosed from logs; template proposed as manual-only.
-- BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
-  hosted Codespaces, real GitHub browser requests and production are unverified.
-- CI PASS: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
-  on e5b015615547d8029ca595bc6e496651287f0909. PR: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
-- Remaining: review PR; run 360/390px and desktop plus
-  Android native picker/forwarded Codespace checks in a capable environment.
-- No merge, deployment, paid services, private GitHub access or shell backend.
-- Next resume: inspect this branch/PR for intervening changes, read VERIFICATION.md,
-  run outstanding browser/Codespaces gates; do not repeat completed setup work.
-- Reusable lesson: invalidate both asynchronous results and loading indicators
-  on workspace replacement; validate actual GitHub responses, not only tree sizes.
+- Authority: owner recovery request; root AGENTS.md and COPILOT_NEXT_TASK.md read.
+- Base: 14942450b0c842d0bba3031afce52664a6a70f95. Branch:
+  fix/copilot-mobile-verification. Tested application source: e425eb5a27f870a3f052998bf77ae5f4fd2a5209.
+- State: BLOCKED for remote publication; existing draft PR #4 targets root.
+  Its published head is 402ac4bc319cf82210028b40b40af1f985134028.
+- Recovery diagnosis: the Codespaces log records the invalid
+  `javascript-node:1-24-bookworm` image tag, then a `base:alpine2026` fallback.
+  The local devcontainer config now uses `24-bookworm`, runs `npm ci`, and
+  forwards 5173. The corrected image has not been rebuilt in this Codespace.
+- The fallback shell initially lacked Node/npm on PATH. Official Alpine packages
+  restored Node 24.22.1 and npm 11.11.0. `npm ci`, dependency resolution,
+  typecheck, 30 tests, build, audit (zero findings), and `git diff --check` pass.
+  Build warns about optional language chunks over 500 kB.
+- Production preview on port 5173 returned HTTP 200 for the app and JS/CSS/WASM
+  wrapper assets. Pierre Highlights passed a Node smoke and jsdom app test.
+  Forwarded-port UI and browser execution are not verified.
+- Terminal diagnosis: `pilot-mobile-verification` and `Grok` are unsupported
+  commands; `copilot` is absent, so its reported segmentation fault cannot be
+  attributed or reproduced. No CLI was installed and no credentials were read.
+- Backup inventory found no named archive/snapshot files or directories under
+  `/workspaces` or `/home/vscode`; no restore was attempted.
+- Existing remote CI passed on 402ac4b. Local commit e425eb5 has no CI result;
+  `git push` was rejected because no credential helper/`gh` is configured.
+  Do not send credentials in chat.
+- Browser/device checks at 360/390px, desktop, Android picker, real GitHub
+  requests, and corrected Codespaces startup remain NOT RUN. See VERIFICATION.md.
+- No merge, deployment, paid services, private GitHub access, or shell backend.
+- Next: authenticate through the Codespaces UI, push this branch, verify new CI,
+  then complete browser and hosted Codespaces checks. Preserve draft PR #2.
+- Reusable lesson: after a devcontainer image pull error, verify the actual
+  running image and PATH; Codespaces can fall back to a base image without Node.
 
 ---
 
