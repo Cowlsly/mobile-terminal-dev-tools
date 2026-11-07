@@ -3,7 +3,10 @@
 Supersedes historical implementation status below; historical decisions retained.
 
 - Authority: owner-approved continuation; root AGENTS.md and COPILOT_NEXT_TASK.md reviewed.
-- Base `14942450b0c842d0bba3031afce52664a6a70f95`; branch HEAD `b8e2a8d`.
+- Base `14942450b0c842d0bba3031afce52664a6a70f95`; application checks used
+  source baseline `b8e2a8d` plus the current uncommitted stylesheet.
+- A documentation-only commit followed the app checks and did not change app
+  sources; CI has not run on it.
 - Local checks pass: clean install, 18 direct dependencies, typecheck, all 30
   tests, production build, full audit (zero findings), and `git diff --check`.
   Build emits the existing optional-language-chunk size warning.
@@ -16,7 +19,8 @@ Supersedes historical implementation status below; historical decisions retained
   change. It was present in the last local build and browser run; preserve it,
   do not stage or publish it without owner confirmation.
 - PR #4 remains open/draft on published head `402ac4bc319cf82210028b40b40af1f985134028`.
-  Community CI passed there, but not on HEAD `b8e2a8d` or the stylesheet change.
+  Community CI passed there, but not on the local documentation commit or the
+  stylesheet change.
   Publishing is blocked by missing local GitHub credentials; do not request them
   in chat. See [VERIFICATION.md](../VERIFICATION.md) for detailed evidence.
 - `.devcontainer/devcontainer.json` now uses `24-bookworm`, `npm ci`, and port

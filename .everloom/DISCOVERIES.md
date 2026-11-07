@@ -16,8 +16,9 @@ Supersedes historical implementation status below; historical decisions retained
   Rate-limit/network failure and native Android picker behavior are still not
   verified; unit tests cover validation and size/encoding/binary limits.
 - `npm ci`, dependency resolution, typecheck, 30 tests, build, audit, and
-  `git diff --check` pass locally. Remote CI is successful only on PR #4's
-  published head; local updates have no CI evidence.
+  `git diff --check` pass locally. A documentation-only commit followed these
+  checks; remote CI is successful only on PR #4's published head, not on local
+  records or the uncommitted stylesheet.
 - Remote push still requires authenticated GitHub UI access. The corrected
   Codespaces image has not been rebuilt; do not claim a hosted preview.
 - No merge, deployment, paid service, private GitHub access, or shell backend.

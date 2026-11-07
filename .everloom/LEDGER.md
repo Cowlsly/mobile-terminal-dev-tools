@@ -4,7 +4,10 @@ Supersedes historical implementation status below; historical decisions retained
 
 - Authority: owner-approved continuation; repository instructions and the
   current owner work packet were reviewed.
-- Base `14942450b0c842d0bba3031afce52664a6a70f95`; branch HEAD `b8e2a8d`.
+- Base `14942450b0c842d0bba3031afce52664a6a70f95`; app checks used source
+  baseline `b8e2a8d` plus the current uncommitted stylesheet.
+- A documentation-only commit followed those app checks and did not change
+  application sources; CI has not run on it.
 - Local npm checks pass (install, 18 direct dependencies, typecheck, 30 tests,
   production build, audit with zero findings, whitespace check).
 - Production Chromium passed at 360×800, 390×844, and 1280×900 without
@@ -14,7 +17,8 @@ Supersedes historical implementation status below; historical decisions retained
   mobile-height fix. It was present in the final build/browser checks, but was
   not staged or published; preserve it pending owner confirmation.
 - PR #4 is still open/draft on `402ac4bc319cf82210028b40b40af1f985134028`.
-  Community CI passed there, not on local HEAD or the uncommitted stylesheet.
+  Community CI passed there, not on local documentation commits or the
+  uncommitted stylesheet.
 - Remote publication is blocked by missing local GitHub credentials. Corrected
   hosted Codespaces startup/port forwarding and physical Android/native picker
   checks remain **NOT RUN**.

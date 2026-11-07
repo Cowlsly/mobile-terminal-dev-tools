@@ -2,11 +2,12 @@
 
 Current results supersede the earlier recovery log below wherever they differ.
 
-Branch `fix/copilot-mobile-verification`, HEAD `b8e2a8d`. The working tree also
-contains an uncommitted `src/styles.css` change for Pierre tree theme colors and
-mobile tree height. That change was preserved and included in the current local
-build/browser checks, but it is not in the published PR. No credentials were
-read or exposed.
+Branch `fix/copilot-mobile-verification`. Application checks used the source
+baseline at `b8e2a8d` plus an uncommitted `src/styles.css` change for Pierre tree
+theme colors and mobile tree height. A later documentation-only commit did not
+change the tested application sources. The stylesheet was preserved and included
+in the local build/browser checks, but it is not in the published PR. No
+credentials were read or exposed.
 
 ## Current local checks
 
@@ -50,8 +51,8 @@ No dependency versions or lockfile were changed.
 
 [Community CI passed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42382070655)
 on published PR #4 head `402ac4bc319cf82210028b40b40af1f985134028`. PR #4 is still
-open and draft. CI has **NOT RUN** on local HEAD `b8e2a8d` or on the uncommitted
-stylesheet change.
+open and draft. CI has **NOT RUN** on the local documentation-only commit or on
+the uncommitted stylesheet change.
 
 The local branch has two commits beyond its remote tracking branch. A previous
 push attempt could not obtain a GitHub password; there is no configured local

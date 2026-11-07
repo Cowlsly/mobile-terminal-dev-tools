@@ -2,8 +2,10 @@
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- Current branch: `fix/copilot-mobile-verification`, HEAD `b8e2a8d`, base
-  `14942450b0c842d0bba3031afce52664a6a70f95`.
+- Current branch: `fix/copilot-mobile-verification`, base
+  `14942450b0c842d0bba3031afce52664a6a70f95`. App checks used source baseline
+  `b8e2a8d` plus the current uncommitted stylesheet; a later commit changed only
+  verification records.
 - All local npm checks pass; 30 tests. Production Chromium verified 360/390px
   portrait and desktop 1280px with no horizontal overflow, sample tree touch,
   WASM highlighting, Diffs, and a public repository request. See
@@ -13,7 +15,8 @@ Supersedes historical implementation status below; historical decisions retained
   committed or on the open draft PR #4.
 - **Blocked:** no local GitHub credentials are configured, so new commits cannot
   be published and no CI result exists for the current local tree. PR #4 CI only
-  proves its remote head `402ac4bc319cf82210028b40b40af1f985134028`.
+  proves its remote head `402ac4bc319cf82210028b40b40af1f985134028`, not later
+  documentation records or the uncommitted stylesheet.
 - Still not verified: native Android file pickers/physical keyboard, keyboard
   focus flow, corrected hosted Codespaces startup and forwarded-port UI, live
   GitHub API rate-limit/error behavior.
