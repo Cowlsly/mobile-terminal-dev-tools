@@ -118,11 +118,20 @@ export async function readPublicGitHubFile(
     path,
     ref: repository.defaultBranch,
   });
-  if (Array.isArray(data) || data.type !== "file" || !data.content) {
+  if (Array.isArray(data) || data.type !== "file" || data.encoding !== "base64" || typeof data.content !== "string") {
     throw new Error("GitHub did not return this file as text content.");
   }
 
-  const decoded = atob(data.content.replace(/\s/g, ""));
+  const encoded = data.content.replace(/\s/g, "");
+  // Recheck the response: a branch can change after its tree was listed.
+  if ((data.size ?? 0) > MAX_TEXT_FILE_BYTES ||
+      encoded.length > 4 * Math.ceil(MAX_TEXT_FILE_BYTES / 3)) {
+    throw new Error("This file is larger than 1 MB. Choose a smaller text file to preview it.");
+  }
+  const decoded = atob(encoded);
+  if (decoded.length > MAX_TEXT_FILE_BYTES) {
+    throw new Error("This file is larger than 1 MB. Choose a smaller text file to preview it.");
+  }
   const bytes = Uint8Array.from(decoded, (character) =>
     character.charCodeAt(0),
   );

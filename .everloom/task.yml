@@ -1,5 +1,5 @@
-version: "1.1"
-name: "Build the mobile workspace MVP"
+version: "1.2"
+name: "Verify and harden the mobile workspace"
 objective: >
   Turn the dependency-only repository into a usable, mobile-friendly code
   workspace with local file browsing, syntax-highlighted viewing, file
@@ -43,3 +43,17 @@ adapters:
   - "documentation"
 worker_backends:
   - "github-copilot"
+
+current_packet:
+  id: CL-DEVTOOLS-VERIFY-20261107
+  state: VERIFYING
+  owner: Codex acting in the Copilot execution role
+  branch: fix/copilot-mobile-verification
+  base_sha: 14942450b0c842d0bba3031afce52664a6a70f95
+  evidence: [VERIFICATION.md]
+  local: passed
+  ci: pending
+  device: not_run
+  production: not_run
+  blocker: Chromium socket operations denied; hosted Codespaces not available
+  next_action: Open draft PR, verify CI, then complete browser and Codespaces gates
