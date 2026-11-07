@@ -6,7 +6,7 @@ Supersedes historical implementation status below; historical decisions retained
   Dev Tools; root AGENTS.md and COPILOT_NEXT_TASK.md read in full. Draft PR #2's
   Copilot instructions reviewed; do not overwrite or merge it.
 - Base: 14942450b0c842d0bba3031afce52664a6a70f95.
-- Branch: fix/copilot-mobile-verification. State: VERIFYING / review candidate.
+- Branch: fix/copilot-mobile-verification. State: PARTIAL / draft PR #4.
 - Plan executed: reproduce baseline; fix file loading regressions with tests;
   add independent CI and Codespaces config; improve touch controls; preserve evidence.
 - OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
@@ -15,7 +15,9 @@ Supersedes historical implementation status below; historical decisions retained
 - Fortify failure diagnosed from logs; template proposed as manual-only.
 - BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
   hosted Codespaces, real GitHub browser requests and production are unverified.
-- Remaining: obtain actual CI result; review PR; run 360/390px and desktop plus
+- CI PASS: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
+  on e5b015615547d8029ca595bc6e496651287f0909. PR: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
+- Remaining: review PR; run 360/390px and desktop plus
   Android native picker/forwarded Codespace checks in a capable environment.
 - No merge, deployment, paid services, private GitHub access or shell backend.
 - Next resume: inspect this branch/PR for intervening changes, read VERIFICATION.md,

@@ -46,14 +46,17 @@ worker_backends:
 
 current_packet:
   id: CL-DEVTOOLS-VERIFY-20261107
-  state: VERIFYING
+  state: BLOCKED
   owner: Codex acting in the Copilot execution role
   branch: fix/copilot-mobile-verification
   base_sha: 14942450b0c842d0bba3031afce52664a6a70f95
   evidence: [VERIFICATION.md]
   local: passed
-  ci: pending
+  ci: passed
+  ci_run: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
+  tested_sha: e5b015615547d8029ca595bc6e496651287f0909
+  pr: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
   device: not_run
   production: not_run
   blocker: Chromium socket operations denied; hosted Codespaces not available
-  next_action: Open draft PR, verify CI, then complete browser and Codespaces gates
+  next_action: Complete browser and Codespaces gates, then independent PR review

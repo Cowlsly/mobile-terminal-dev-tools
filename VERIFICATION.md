@@ -25,6 +25,7 @@ and comparison completion after switching workspaces.
 - jsdom application tests: sample workspace, Pierre tree selection, highlighted
   source, mounting the diff renderer, local file input, invalid GitHub host.
 - Production preview starts with `npm run preview -- --host 127.0.0.1 --port 4173`.
+  A later HTTP probe could not connect, so a reachable preview is NOT verified.
   Default all-interface preview failed here because this runtime denies network
   interface enumeration (`uv_interface_addresses`). This is an environment
   restriction, not evidence that Codespaces has the same problem.
@@ -37,8 +38,11 @@ and comparison completion after switching workspaces.
 
 ## CI and optional Fortify
 
-Community CI is proposed in `.github/workflows/ci.yml`; actual run receipt will
-be recorded after the PR is opened. Do not infer CI success from local checks.
+[Community CI passed](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953)
+on source commit `e5b015615547d8029ca595bc6e496651287f0909`: install,
+dependency resolution, typecheck, all 30 tests, production build, full audit and
+clean tracked diff all succeeded. [Draft PR #4](https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4)
+contains the changes. Later evidence-only commits do not change tested source.
 
 [Observed Fortify failure](https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42362861697)
 at base SHA: `ERROR: Either FOD_CLIENT_ID or FOD_USER must be declared`.
