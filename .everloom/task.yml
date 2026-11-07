@@ -51,13 +51,14 @@ current_packet:
   branch: fix/copilot-mobile-verification
   base_sha: 14942450b0c842d0bba3031afce52664a6a70f95
   evidence: [VERIFICATION.md]
-  local: passed
-  ci: "passed on published head 402ac4bc319cf82210028b40b40af1f985134028; NOT RUN for local tested source e425eb5a27f870a3f052998bf77ae5f4fd2a5209"
+  local: "npm checks pass; Chromium production checks pass at 360, 390, and 1280px; see VERIFICATION.md"
+  ci: "passed on published head 402ac4bc319cf82210028b40b40af1f985134028; NOT RUN for local HEAD b8e2a8d or uncommitted stylesheet"
   ci_run: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42382070655
-  tested_sha: e425eb5a27f870a3f052998bf77ae5f4fd2a5209
+  tested_sha: b8e2a8d
+  tested_worktree: "includes uncommitted src/styles.css change; not staged or published"
   pr: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
-  codespaces_image: "Config now uses 24-bookworm and forwards 5173; previous invalid image launch fell back to base:alpine2026; corrected startup not verified"
-  device: not_run
-  production: not_run
-  blocker: "Git push failed because no credential helper/gh is configured; browser/device checks and startup using the corrected image are also unverified"
-  next_action: "Authenticate with the Codespaces UI without sharing credentials, push the branch, verify CI, then complete browser and corrected Codespaces checks"
+  codespaces_image: "Config uses 24-bookworm, npm ci, and port 5173; corrected startup and forwarded-port UI NOT RUN"
+  device: "Chromium responsive/touch simulation PASS; physical Android, native picker, and keyboard/focus NOT RUN"
+  production: "Production bundle preview/browser PASS; deployment NOT RUN"
+  blocker: "Local GitHub credentials unavailable; stylesheet ownership/readiness, corrected Codespaces startup, physical Android gates, and CI on final local tree remain unresolved"
+  next_action: "Preserve and confirm the stylesheet change, publish through the authenticated GitHub UI, verify CI on the final commit, then close Codespaces and physical-device gates before starting the Pro add-on repository"

@@ -1,38 +1,26 @@
-# Current verification checkpoint — 7 November 2026
+# Current verification checkpoint — 8 November 2026 (AWST)
 
 Supersedes historical implementation status below; historical decisions retained.
 
-- Authority: owner recovery request; root AGENTS.md and COPILOT_NEXT_TASK.md read.
-- Base: 14942450b0c842d0bba3031afce52664a6a70f95. Branch:
-  fix/copilot-mobile-verification. Tested application source: e425eb5a27f870a3f052998bf77ae5f4fd2a5209.
-- State: BLOCKED for remote publication; existing draft PR #4 targets root.
-  Its published head is 402ac4bc319cf82210028b40b40af1f985134028.
-- Recovery diagnosis: the Codespaces log records the invalid
-  `javascript-node:1-24-bookworm` image tag, then a `base:alpine2026` fallback.
-  The local devcontainer config now uses `24-bookworm`, runs `npm ci`, and
-  forwards 5173. The corrected image has not been rebuilt in this Codespace.
-- The fallback shell initially lacked Node/npm on PATH. Official Alpine packages
-  restored Node 24.22.1 and npm 11.11.0. `npm ci`, dependency resolution,
-  typecheck, 30 tests, build, audit (zero findings), and `git diff --check` pass.
-  Build warns about optional language chunks over 500 kB.
-- Production preview on port 5173 returned HTTP 200 for the app and JS/CSS/WASM
-  wrapper assets. Pierre Highlights passed a Node smoke and jsdom app test.
-  Forwarded-port UI and browser execution are not verified.
-- Terminal diagnosis: `pilot-mobile-verification` and `Grok` are unsupported
-  commands; `copilot` is absent, so its reported segmentation fault cannot be
-  attributed or reproduced. No CLI was installed and no credentials were read.
-- Backup inventory found no named archive/snapshot files or directories under
-  `/workspaces` or `/home/vscode`; no restore was attempted.
-- Existing remote CI passed on 402ac4b. Local commit e425eb5 has no CI result;
-  `git push` was rejected because no credential helper/`gh` is configured.
-  Do not send credentials in chat.
-- Browser/device checks at 360/390px, desktop, Android picker, real GitHub
-  requests, and corrected Codespaces startup remain NOT RUN. See VERIFICATION.md.
-- No merge, deployment, paid services, private GitHub access, or shell backend.
-- Next: authenticate through the Codespaces UI, push this branch, verify new CI,
-  then complete browser and hosted Codespaces checks. Preserve draft PR #2.
-- Reusable lesson: after a devcontainer image pull error, verify the actual
-  running image and PATH; Codespaces can fall back to a base image without Node.
+- At production build preview, 360×800 and 390×844 viewports had no horizontal
+  page overflow; 1280×900 desktop also fit.
+- Before the current uncommitted CSS update, the Pierre tree's theme variables
+  were not applied and its narrow-screen region was only about 113px high. The
+  current worktree sets the package's sidebar/list/input theme variables and a
+  definite mobile height (`clamp(120px, 24dvh, 220px)`). A 390px production
+  browser run then showed four rows in about 203px, touch selection, highlighting,
+  and comparison. Preserve this local change; it is not committed.
+- Production-browser highlighting confirms the bundled WASM runtime works; this
+  is stronger than the earlier Node/jsdom-only check.
+- A real public API request for `octocat/Hello-World` succeeded without a token.
+  Rate-limit/network failure and native Android picker behavior are still not
+  verified; unit tests cover validation and size/encoding/binary limits.
+- `npm ci`, dependency resolution, typecheck, 30 tests, build, audit, and
+  `git diff --check` pass locally. Remote CI is successful only on PR #4's
+  published head; local updates have no CI evidence.
+- Remote push still requires authenticated GitHub UI access. The corrected
+  Codespaces image has not been rebuilt; do not claim a hosted preview.
+- No merge, deployment, paid service, private GitHub access, or shell backend.
 
 ---
 
