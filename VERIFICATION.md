@@ -74,10 +74,11 @@ this recovery diff and is not evidence that the image-tag change passed CI.
   Codespaces persisted-share paths. Nothing was restored or overwritten.
 - No dependencies or lockfile were changed. The previous PR #4 and PR #5 are
   merged. Local recovery commit
-  `29d9737eb3c0fb4438b703222e675f7a3da5197c` is not pushed or run in CI. The
-  noninteractive `git ls-remote` preflight could not obtain a password, so no
-  remote branch change or PR was made. Git commit signing had no local private
-  key; a per-command unsigned override was used without changing Git config.
+  `29d9737eb3c0fb4438b703222e675f7a3da5197c` and evidence commit `c249c68` are
+  not pushed or run in CI. The noninteractive `git ls-remote` preflight could
+  not obtain a password, so no remote branch change or PR was made. Git commit
+  signing had no local private key; per-command unsigned overrides were used
+  without changing Git config.
 
 ---
 
