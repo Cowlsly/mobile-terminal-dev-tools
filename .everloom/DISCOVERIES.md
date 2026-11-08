@@ -45,6 +45,12 @@
   was attempted; there was no unique backup content to reconcile.
 - Browser viewport/touch/native picker, live GitHub browser flow, and the
   Codespaces forwarded-port interface remain untested.
+- Remote publication is blocked: the noninteractive `git ls-remote` readiness
+  check could not obtain a password, so the branch was not pushed and no PR was
+  created. Do not request or record a token; publish through an authorized
+  GitHub workflow. Git signing also lacked a local secret key; the initial
+  recovery commit used a per-command unsigned override without changing Git
+  configuration.
 
 ---
 

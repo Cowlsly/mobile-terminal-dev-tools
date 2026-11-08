@@ -11,8 +11,10 @@
 - No backup was found/restored. No source dependency or lockfile changes.
 
 ## Next best actions
-1. Review the final diff and commit on this recovery branch.
-2. Push and open a review PR targeting `root` if remote publishing succeeds.
+1. Publish local commit `29d9737eb3c0fb4438b703222e675f7a3da5197c` through an
+   authorized GitHub workflow; the agent's noninteractive remote check could
+   not authenticate. Do not provide or store a token in the repository.
+2. Open a review PR targeting `root` after the branch is available remotely.
 3. Rebuild a Codespace from the corrected config; verify the image, Node/npm,
    `npm ci`, and port 5173 forwarding.
 4. In a real browser, check 360px/390px portrait and desktop, navigation,

@@ -18,6 +18,11 @@ Supersedes the prior status below; historical decisions remain available.
   smoke test passed in Node. Browser execution was not available.
 - Latest observed CI was successful on the earlier merged PR #5 commit; it does
   not run against this recovery diff. See root `VERIFICATION.md`.
+- Recovery commit `29d9737eb3c0fb4438b703222e675f7a3da5197c` is local only.
+  The remote branch check stopped because Git could not obtain a password in
+  this noninteractive environment; no push or PR was completed. Commit signing
+  also lacked a local private key, so only that commit used a one-command
+  unsigned override; persistent Git configuration was not changed.
 - `pilot-mobile-verification`, `copilot`, and `Grok` are not installed commands
   or project scripts. No alias/docs or crash dump was found. The reported
   Copilot segmentation fault cannot be attributed or reproduced here; a CLI and
@@ -27,8 +32,8 @@ Supersedes the prior status below; historical decisions remain available.
   Codespace rebuild remain NOT RUN.
 - No dependency or lockfile change, backup restore, merge, deployment, private
   GitHub access, or shell backend.
-- Next: commit/push this recovery branch and open a PR if remote publishing is
-  available; then rebuild the Codespace and complete browser/device checks.
+- Next: publish the local branch through an authorized GitHub workflow and open
+  a PR against `root`; then rebuild the Codespace and complete browser/device checks.
 
 ---
 
