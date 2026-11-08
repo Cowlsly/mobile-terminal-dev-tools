@@ -62,5 +62,5 @@ current_packet:
   device: not_run
   hosted_codespaces: not_run
   production_preview: passed_local_http
-  blocker: Browser/device and hosted forwarding unavailable; remote branch check requires authorized GitHub authentication
+  blocker: Browser/device and hosted forwarding unavailable; noninteractive Git push requires authorized GitHub authentication
   next_action: Publish branch and open PR, then rebuild Codespace and run browser/mobile gates

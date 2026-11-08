@@ -20,10 +20,10 @@ Supersedes the prior status below; historical decisions remain available.
   not run against this recovery diff. See root `VERIFICATION.md`.
 - Recovery commit `29d9737eb3c0fb4438b703222e675f7a3da5197c` and evidence
   commit `c249c681654cda7be9757a51c1840ff9a0ad07d1` are local only.
-  The remote branch check stopped because Git could not obtain a password in
-  this noninteractive environment; no push or PR was completed. Commit signing
-  lacked a local private key, so both commits used one-command unsigned
-  overrides; persistent Git configuration was not changed.
+  The remote branch check and noninteractive push both failed because Git could
+  not obtain a password; no remote ref changed and no PR was created. Commit
+  signing lacked a local private key, so all recovery commits used one-command
+  unsigned overrides; persistent Git configuration was not changed.
 - `pilot-mobile-verification`, `copilot`, and `Grok` are not installed commands
   or project scripts. No alias/docs or crash dump was found. The reported
   Copilot segmentation fault cannot be attributed or reproduced here; a CLI and

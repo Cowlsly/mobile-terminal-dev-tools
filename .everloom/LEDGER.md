@@ -10,7 +10,7 @@ Branch: `recovery/codespaces-runtime-2026-11-08`
 | repair-devcontainer | Set a supported Node 24 image | COMPLETE | `.devcontainer/devcontainer.json` uses documented `5-24-bookworm` tag |
 | restore-and-verify | Install Node 24 and run the requested project checks | COMPLETE | Node 24.22.2/npm 11.19.1; all npm checks passed; see `VERIFICATION.md` |
 | browser-and-hosted-codespaces | Evaluate phone/desktop viewport, pickers, live browsing and forwarded UI | BLOCKED | No interactive browser or forwarded-port UI; run in a rebuilt Codespace/device |
-| publish-recovery | Commit, push, and open a PR against `root` | BLOCKED | Local commits `29d9737` and `c249c68`; `git ls-remote` could not authenticate noninteractively, so branch was not pushed and no PR exists |
+| publish-recovery | Commit, push, and open a PR against `root` | BLOCKED | Local commits `29d9737` and `c249c68`; `git ls-remote` and `git push` could not authenticate noninteractively, so no remote branch or PR exists |
 
 ## Historical implementation ledger (superseded)
 
