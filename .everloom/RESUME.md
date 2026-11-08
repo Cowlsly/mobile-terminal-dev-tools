@@ -11,9 +11,10 @@
 - No backup was found/restored. No source dependency or lockfile changes.
 
 ## Next best actions
-1. Publish the local recovery branch (commits `29d9737` and `c249c68`) through
-   an authorized GitHub workflow; noninteractive remote check and push failed
-   for lack of Git authentication. Do not provide or store a token in the repo.
+1. Publish the local branch `recovery/codespaces-runtime-2026-11-08`, including
+   the code-fix commit and evidence updates, through an authorized GitHub
+   workflow; noninteractive remote check and push failed for lack of Git
+   authentication. Do not provide or store a token in the repo.
 2. Open a review PR targeting `root` after the branch is available remotely.
 3. Rebuild a Codespace from the corrected config; verify the image, Node/npm,
    `npm ci`, and port 5173 forwarding.
