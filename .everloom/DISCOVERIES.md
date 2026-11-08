@@ -1,35 +1,56 @@
-# Current verification checkpoint — 7 November 2026
+# Recovery findings — 8 November 2026 UTC
 
-Supersedes historical implementation status below; historical decisions retained.
+## Confirmed Codespaces runtime failure
 
-- Authority: current owner request to execute Master Superflow Work Queue v3 on
-  Dev Tools; root AGENTS.md and COPILOT_NEXT_TASK.md read in full. Draft PR #2's
-  Copilot instructions reviewed; do not overwrite or merge it.
-- Base: 14942450b0c842d0bba3031afce52664a6a70f95.
-- Branch: fix/copilot-mobile-verification. State: PARTIAL / draft PR #4.
-- Plan executed: reproduce baseline; fix file loading regressions with tests;
-  add independent CI and Codespaces config; improve touch controls; preserve evidence.
-- OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
-  build, audit and whitespace checks pass. See VERIFICATION.md for exact scope.
-- Added response-size/empty-file handling and guards for stale asynchronous work.
-- Fortify failure diagnosed from logs; template proposed as manual-only.
-- BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
-  hosted Codespaces, real GitHub browser requests and production are unverified.
-- CI PASS: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
-  on e5b015615547d8029ca595bc6e496651287f0909. PR: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
-- Remaining: review PR; run 360/390px and desktop plus
-  Android native picker/forwarded Codespace checks in a capable environment.
-- No merge, deployment, paid services, private GitHub access or shell backend.
-- Next resume: inspect this branch/PR for intervening changes, read VERIFICATION.md,
-  run outstanding browser/Codespaces gates; do not repeat completed setup work.
-- Reusable lesson: invalidate both asynchronous results and loading indicators
-  on workspace replacement; validate actual GitHub responses, not only tree sizes.
+- Symptom: container setup failed, followed by a shell where `node` and `npm`
+  were unavailable and all npm commands exited 127.
+- Reproduction/evidence: `.persistedshare/creation.log` reports no manifest for
+  `mcr.microsoft.com/devcontainers/javascript-node:1-24-bookworm`; the later
+  environment is Alpine Linux 3.23.7 and has no Node executable on `PATH`.
+- Root cause: unsupported/outdated image tag led Codespaces to a fallback
+  environment rather than the configured JavaScript Node development image.
+- Repair: changed the image reference to the official documented
+  `mcr.microsoft.com/devcontainers/javascript-node:5-24-bookworm`. A Codespaces
+  rebuild has not yet been run.
+- Verification: installed official Node v24.22.2 Linux musl archive after its
+  SHA-256 matched the official `SHASUMS256.txt`; npm 11.19.1 and requested
+  project checks then passed. This proves local project checks, not image build.
+- Prevention: validate image tags against the maintained Dev Container image
+  documentation when changing major Node versions; test actual Codespaces
+  creation before calling its preview path ready.
+
+## Reported terminal commands
+
+- `pilot-mobile-verification` and `Grok` do not resolve as executables; neither
+  is a package script, repository-documented task, or matching alias in the
+  inspected shell configuration.
+- `copilot` does not resolve as an executable. No crash dump or matching crash
+  message exists in inspected Codespaces startup/terminal logs. The reported
+  segmentation fault cannot be attributed to a Copilot CLI binary or
+  reproduced. The VS Code Copilot extension is a distinct component; its local
+  host installation is not inspectable from this fallback shell.
+- Prevention: confirm `command -v`, project scripts, and documented task names
+  before running a command; do not invent aliases or install unofficial tools.
+
+## Application and preservation evidence
+
+- `npm ci`, `npm ls --depth=0`, typecheck, 30 tests, build, audit (zero
+  vulnerabilities), and whitespace check passed. The build warns about
+  optional large language chunks; it exits successfully.
+- Dev server on 5173 and production preview on 4173 returned HTTP 200 locally.
+  Build output includes the Pierre/WASM helper chunks and those assets returned
+  HTTP 200; `codeToHtml` generated highlighted HTML in a Node smoke test.
+  Production-browser WASM remains unverified.
+- No backup archive/snapshot was found in the inspected locations. No restore
+  was attempted; there was no unique backup content to reconcile.
+- Browser viewport/touch/native picker, live GitHub browser flow, and the
+  Codespaces forwarded-port interface remain untested.
 
 ---
 
-## Historical record (superseded)
+## Historical discoveries (superseded)
 
-# Discoveries
+### Earlier implementation discoveries
 
 - The project started with only a README, license, Git ignore file, and the newly installed Pierre libraries; there was no application source or npm scripts.
 - The resolved Pierre package versions are `@pierre/diffs@1.6.4`, `@pierre/trees@1.0.0-beta.6`, and `@pierre/highlights@0.4.0`.

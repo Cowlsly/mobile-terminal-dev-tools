@@ -1,35 +1,35 @@
-# Current verification checkpoint — 7 November 2026
+# Resume packet — 8 November 2026 UTC
 
-Supersedes historical implementation status below; historical decisions retained.
+## Current state
+- Branch `recovery/codespaces-runtime-2026-11-08`, based on
+  `79a3006141415e95c4705454dd394a282e32a550`.
+- Repaired the invalid Node 24 Dev Container image tag and restored Node/npm in
+  the current user PATH. The required local npm checks passed; details are in
+  root `VERIFICATION.md`.
+- Local dev server and production preview served successfully. No interactive
+  browser or Codespaces forwarded-port UI was available.
+- No backup was found/restored. No source dependency or lockfile changes.
 
-- Authority: current owner request to execute Master Superflow Work Queue v3 on
-  Dev Tools; root AGENTS.md and COPILOT_NEXT_TASK.md read in full. Draft PR #2's
-  Copilot instructions reviewed; do not overwrite or merge it.
-- Base: 14942450b0c842d0bba3031afce52664a6a70f95.
-- Branch: fix/copilot-mobile-verification. State: PARTIAL / draft PR #4.
-- Plan executed: reproduce baseline; fix file loading regressions with tests;
-  add independent CI and Codespaces config; improve touch controls; preserve evidence.
-- OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
-  build, audit and whitespace checks pass. See VERIFICATION.md for exact scope.
-- Added response-size/empty-file handling and guards for stale asynchronous work.
-- Fortify failure diagnosed from logs; template proposed as manual-only.
-- BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
-  hosted Codespaces, real GitHub browser requests and production are unverified.
-- CI PASS: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
-  on e5b015615547d8029ca595bc6e496651287f0909. PR: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
-- Remaining: review PR; run 360/390px and desktop plus
-  Android native picker/forwarded Codespace checks in a capable environment.
-- No merge, deployment, paid services, private GitHub access or shell backend.
-- Next resume: inspect this branch/PR for intervening changes, read VERIFICATION.md,
-  run outstanding browser/Codespaces gates; do not repeat completed setup work.
-- Reusable lesson: invalidate both asynchronous results and loading indicators
-  on workspace replacement; validate actual GitHub responses, not only tree sizes.
+## Next best actions
+1. Review the final diff and commit on this recovery branch.
+2. Push and open a review PR targeting `root` if remote publishing succeeds.
+3. Rebuild a Codespace from the corrected config; verify the image, Node/npm,
+   `npm ci`, and port 5173 forwarding.
+4. In a real browser, check 360px/390px portrait and desktop, navigation,
+   highlighting/WASM, local file pickers, comparisons, public GitHub success and
+   error flows, touch targets, and accessibility. Record NOT RUN until then.
+
+## Command diagnosis
+- The reported command names are not installed or documented project tasks.
+- The `copilot` CLI segfault is unverified: no CLI binary, core dump, or matching
+  inspected log entry exists. Do not equate it with the VS Code extension.
+- Preserve the read-only public GitHub and browser-local file privacy boundaries.
 
 ---
 
-## Historical record (superseded)
+## Historical resume packet (superseded)
 
-# Resume Packet
+### Initial implementation resume packet
 
 ## PRIMARY OBJECTIVE
 Deliver a mobile-friendly local code workspace using the installed Pierre Trees, Diffs, and Highlights packages.

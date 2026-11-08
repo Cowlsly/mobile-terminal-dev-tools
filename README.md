@@ -75,10 +75,13 @@ npm test
 
 If the preview is missing, add port **5173** in the Ports panel and verify that the
 Vite process is still running. If the port is occupied, stop the old process or
-forward the new port printed by Vite. Folder selection varies across Android
-browsers and document providers; select individual files when needed. Cancelling
-a picker leaves the current workspace intact. Editor font/wrap settings do not
-change Android keyboard behaviour. Codespaces hosting itself has account quotas.
+forward the new port printed by Vite. If an existing Codespace has no Node/npm
+after a failed container build, run **Codespaces: Rebuild Container** to apply
+the Node 24 image from `.devcontainer/devcontainer.json`; do not treat a fallback
+Alpine shell as ready. Folder selection varies across Android browsers and
+document providers; select individual files when needed. Cancelling a picker
+leaves the current workspace intact. Editor font/wrap settings do not change
+Android keyboard behaviour. Codespaces hosting itself has account quotas.
 
 ## Verification and release status
 

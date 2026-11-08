@@ -1,35 +1,18 @@
-# Current verification checkpoint — 7 November 2026
+# Recovery ledger — 8 November 2026 UTC
 
-Supersedes historical implementation status below; historical decisions retained.
+Base: `79a3006141415e95c4705454dd394a282e32a550`
+Branch: `recovery/codespaces-runtime-2026-11-08`
 
-- Authority: current owner request to execute Master Superflow Work Queue v3 on
-  Dev Tools; root AGENTS.md and COPILOT_NEXT_TASK.md read in full. Draft PR #2's
-  Copilot instructions reviewed; do not overwrite or merge it.
-- Base: 14942450b0c842d0bba3031afce52664a6a70f95.
-- Branch: fix/copilot-mobile-verification. State: PARTIAL / draft PR #4.
-- Plan executed: reproduce baseline; fix file loading regressions with tests;
-  add independent CI and Codespaces config; improve touch controls; preserve evidence.
-- OBSERVED NOW: install, dependency resolution, typecheck, 30 tests, production
-  build, audit and whitespace checks pass. See VERIFICATION.md for exact scope.
-- Added response-size/empty-file handling and guards for stale asynchronous work.
-- Fortify failure diagnosed from logs; template proposed as manual-only.
-- BLOCKED: Chromium launch denied by runtime socket policy. Browser/mobile,
-  hosted Codespaces, real GitHub browser requests and production are unverified.
-- CI PASS: https://github.com/Cowlsly/mobile-terminal-dev-tools/actions/runs/42381990953
-  on e5b015615547d8029ca595bc6e496651287f0909. PR: https://github.com/Cowlsly/mobile-terminal-dev-tools/pull/4
-- Remaining: review PR; run 360/390px and desktop plus
-  Android native picker/forwarded Codespace checks in a capable environment.
-- No merge, deployment, paid services, private GitHub access or shell backend.
-- Next resume: inspect this branch/PR for intervening changes, read VERIFICATION.md,
-  run outstanding browser/Codespaces gates; do not repeat completed setup work.
-- Reusable lesson: invalidate both asynchronous results and loading indicators
-  on workspace replacement; validate actual GitHub responses, not only tree sizes.
+| ID | Work | Status | Evidence / next action |
+|---|---|---|---|
+| preserve-and-inspect | Capture branch/worktree, task packet, recovery records, Codespaces config, environment and backup candidates | COMPLETE | Clean base before edits; no backup archive/snapshot found or restored |
+| diagnose-runtime | Resolve reported command failures and Codespaces startup failure | COMPLETE | Invalid Node image manifest caused Alpine fallback; named commands absent, no relevant aliases/docs/core dump |
+| repair-devcontainer | Set a supported Node 24 image | COMPLETE | `.devcontainer/devcontainer.json` uses documented `5-24-bookworm` tag |
+| restore-and-verify | Install Node 24 and run the requested project checks | COMPLETE | Node 24.22.2/npm 11.19.1; all npm checks passed; see `VERIFICATION.md` |
+| browser-and-hosted-codespaces | Evaluate phone/desktop viewport, pickers, live browsing and forwarded UI | BLOCKED | No interactive browser or forwarded-port UI; run in a rebuilt Codespace/device |
+| publish-recovery | Commit, push, and open a PR against `root` | PENDING | Commit after final diff review; remote publishing availability still to be tested |
 
----
-
-## Historical record (superseded)
-
-# Work Ledger
+## Historical implementation ledger (superseded)
 
 | ID | Description | Status | Dependencies | Output | Evidence | Next action |
 |---|---|---|---|---|---|---|
